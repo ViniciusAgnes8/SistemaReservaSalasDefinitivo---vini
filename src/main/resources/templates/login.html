@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Biopark Educação</title>
+    <link rel="stylesheet" href="/src/main/resources/static/login.css" th:href="@{/login.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-form">
+            <h2>Bem-vindo ao Sistema de Reservas</h2>
+            <form th:action="@{/login}" method="post" th:object="${user}">
+                <div class="input-container">
+                    <label for="username">
+                        <i class="fas fa-user"></i> Usuário:
+                    </label>
+                    <input type="text" id="username" name="username" th:field="*{username}" required placeholder="Digite seu usuário">
+                </div>
+                <div class="input-container">
+                    <label for="password">
+                        <i class="fas fa-lock"></i> Senha:
+                    </label>
+                    <input type="password" id="password" name="password" th:field="*{password}" required placeholder="Digite sua senha">
+                </div>
+                <button type="submit" class="btn-login">
+                    <i class="fas fa-sign-in-alt"></i> Entrar
+                </button>
+            </form>
+            <!-- Exibir mensagem de erro -->
+            <div id="error-message" class="error-message" th:if="${error}" th:text="${error}"></div>
+        </div>
+    </div>
+    <script src="script.js" th:src="@{/script.js}"></script>
+</body>
+</html>

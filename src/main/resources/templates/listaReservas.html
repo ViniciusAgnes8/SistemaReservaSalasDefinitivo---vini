@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Reservas</title>
+    <link rel="stylesheet" href="/src/main/resources/static/style.css" th:href="@{/style.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Navbar fixa -->
+    <nav class="navbar">
+        <div class="logo-container">
+            <a th:href="@{/page/home}">
+                <img th:src="@{https://bioparkeducacao.com/wp-content/uploads/2023/08/biopark-logo-2.png}" h:href="@{/page/home}" alt="Logo do Sistema" class="logo">
+            </a>
+        </div>
+        <ul class="menu-buttons">
+            <li><a th:href="@{/page/salas}" class="nav-link">Salas</a></li>
+            <li><a th:href="@{/page/equipamentos}" class="nav-link">Equipamentos</a></li>
+            <li><a th:href="@{/page/reservas}" class="nav-link">Reservas</a></li>
+        </ul>
+    </nav>
+
+    <section class="content">
+        <div class="container">
+            <header>
+                <h1>Lista de Reservas</h1>
+                <div class="add-buttons">
+                    <button class="btn-add" onclick="openModal('equipamentoModal')">
+                        <i class="fas fa-plus"></i> Adicionar Equipamento
+                    </button>
+                    <button class="btn-add" onclick="openModal('salaModal')">
+                        <i class="fas fa-plus"></i> Adicionar Sala
+                    </button>
+                    <button class="btn-add" onclick="openModal('usuarioModal')">
+                        <i class="fas fa-plus"></i> Adicionar Usuário
+                    </button>
+                </div>
+            </header>
+
+            <!-- Filtros para busca -->
+            <div class="filters">
+                <input type="text" class="filter-input" id="filter-id" placeholder="Filtrar por ID">
+                <input type="text" class="filter-input" id="filter-nome-sala" placeholder="Filtrar por Nome da Sala">
+                <input type="date" class="filter-input" id="filter-data-reserva" placeholder="Filtrar por Data da Reserva">
+                <input type="text" class="filter-input" id="filter-horario" placeholder="Filtrar por Horário">
+                <input type="text" class="filter-input" id="filter-usuario" placeholder="Filtrar por Usuário">
+                <button class="search-button" onclick="filterTable()">Buscar</button>
+            </div>
+
+            <section>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nome da Sala</th>
+                            <th>Data da Reserva</th>
+                            <th>Horário</th>
+                            <th>Usuário</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Exemplo com Thymeleaf -->
+                        <tr th:each="reserva : ${reservas}">
+                            <td th:text="${reserva.id}"></td>
+                            <td th:text="${reserva.nomeSala}"></td>
+                            <td th:text="${#dates.format(reserva.dataReserva, 'yyyy-MM-dd')}"></td>
+                            <td th:text="${reserva.horario}"></td>
+                            <td th:text="${reserva.usuario}"></td>
+                            <td>
+                                <button class="btn-edit" th:onclick="'editarReserva(' + ${reserva.id} + ')'">
+                                    <i class="fas fa-edit"></i> Editar
+                                </button>
+                                <button class="btn-delete" th:onclick="'deletarReserva(' + ${reserva.id} + ')'">
+                                    <i class="fas fa-trash-alt"></i> Deletar
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Biopark Educação | Todos os direitos reservados</p>
+    </footer>
+
+    <script src="script.js" th:src="@{/script.js}"></script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Reserva de Salas</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Navbar fixa -->
+    <nav class="navbar">
+        <div class="logo-container">
+            <img th:src="@{https://bioparkeducacao.com/wp-content/uploads/2023/08/biopark-logo-2.png}" h:href="@{/page/home}" alt="Logo do Sistema" class="logo">
+        </div>
+        <ul class="menu-buttons">
+            <li><a th:href="@{/page/salas}" class="nav-link">Salas</a></li>
+            <li><a th:href="@{/page/equipamentos}" class="nav-link">Equipamentos</a></li>
+            <li><a th:href="@{/page/reservas}" class="nav-link">Reservas</a></li>
+        </ul>
+    </nav>
+
+    <!-- Conteúdo principal -->
+    <div class="container">
+        <header>
+            <h1>Sistema de Reserva de Salas e Gestão de Imobilizado</h1>
+            <p>Bem-vindo ao nosso sistema! Gerencie reservas de salas e equipamentos de forma simples e eficiente.</p>
+        </header>
+        <main>
+            <section class="welcome">
+                <h2>Iniciar a Gestão</h2>
+                <p>Escolha uma das opções abaixo para começar a gerenciar as salas, equipamentos ou reservas.</p>
+            </section>
+            <div class="menu-container">
+                <ul class="menu-center">
+                    <li><a th:href="@{/page/salas}" class="nav-link-center"><i class="fas fa-door-open"></i> Salas</a></li>
+                    <li><a th:href="@{/page/equipamentos}" class="nav-link-center"><i class="fas fa-tools"></i> Equipamentos</a></li>
+                    <li><a th:href="@{/page/reservas}" class="nav-link-center"><i class="fas fa-calendar-check"></i> Reservas</a></li>
+                </ul>
+            </div>
+        </main>
+    </div>
+
+    <!-- Rodapé fixo -->
+    <footer>
+        <p>&copy; 2024 Biopark Educação | Todos os direitos reservados</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
