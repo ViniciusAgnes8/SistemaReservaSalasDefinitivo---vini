@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Salas</title>
-    <link rel="stylesheet" href="/src/main/resources/static/style.css" th:href="@{/style.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css}" href="/src/main/resources/static/css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
@@ -16,9 +16,9 @@
             </a>
         </div>
         <ul class="menu-buttons">
-            <li><a th:href="@{/page/salas}" class="nav-link">Salas</a></li>
-            <li><a th:href="@{/page/equipamentos}" class="nav-link">Equipamentos</a></li>
-            <li><a th:href="@{/page/reservas}" class="nav-link">Reservas</a></li>
+            <li><a th:href="@{/salas}" class="nav-link">Salas</a></li>
+            <li><a th:href="@{/equipamentos}" class="nav-link">Equipamentos</a></li>
+            <li><a th:href="@{/reservas}" class="nav-link">Reservas</a></li>
         </ul>
     </nav>
 
@@ -27,7 +27,6 @@
             <h1>Salas Disponíveis</h1>
         </header>
 
-        <!-- Filtros: Pesquisa, Capacidade e Tipo de Sala -->
         <div class="filters">
             <div class="filter-search">
                 <input type="text" id="search" placeholder="Pesquisar salas..." class="search-input">
@@ -37,7 +36,8 @@
             <div class="filter-capacity">
                 <select id="capacity-filter" class="capacity-filter">
                     <option value="">Filtrar por capacidade</option>
-                    <option value="50">50 Pessoas</option>
+                    <option value="50">05 Pessoas</option>
+                    <option value="50">10 Pessoas</option>
                     <option value="15">15 Pessoas</option>
                     <option value="20">20 Pessoas</option>
                     <option value="30">30 Pessoas</option>
@@ -54,7 +54,6 @@
             </div>
         </div>
 
-        <!-- Tabela de Salas -->
         <main>
             <table>
                 <thead>
@@ -62,19 +61,18 @@
                         <th>ID</th>
                         <th>Nome da Sala</th>
                         <th>Capacidade</th>
-                        <th>Tipo de Sala</th>
+                        <th>Status</th>
                         <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody id="room-list">
-                    <!-- Iteração Thymeleaf -->
-                    <tr th:each="sala : ${salas}">
+                    <tr th:each="sala : ${salas}" id="sala-{sala.id}">
                         <td th:text="${sala.id}"></td>
                         <td th:text="${sala.nome}"></td>
                         <td th:text="${sala.capacidade}"></td>
-                        <td th:text="${sala.tipo}"></td>
+                        <td th:text="${sala.status}"></td>
                         <td>
-                            <button class="btn-reserve" th:onclick="'reservarSala(' + ${sala.id} + ')'">
+                            <button class="btn-reserve" onclick="openReserveModal('${sala.id}', '${sala.nome}')">
                                 <i class="fas fa-calendar-alt"></i> Reservar
                             </button>
                         </td>
@@ -88,6 +86,29 @@
         <p>&copy; 2024 Biopark Educação | Todos os direitos reservados</p>
     </footer>
 
-    <script src="script.js" th:src="@{/script.js}"></script>
+    <!-- Modal de Reserva -->
+    <div id="reserve-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeReserveModal()">&times;</span>
+            <h2>Reservar Sala</h2>
+            <form id="reserve-form" onsubmit="handleReservation(event)">
+                <input type="hidden" id="sala-id" name="sala-id">
+                <label for="nome">Nome:</label>
+                <input type="text" id="nome" name="nome" required>
+                <label for="email">E-mail:</label>
+                <input type="email" id="email" name="email" required>
+                <label for="data">Data:</label>
+                <input type="date" id="data" name="data" required>
+                <label for="entrada">Horário de Entrada:</label>
+                <input type="time" id="entrada" name="entrada" required>
+                <label for="saida">Horário de Saída:</label>
+                <input type="time" id="saida" name="saida" required>
+                <button type="submit">Confirmar Reserva</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="/src/main/resources/static/js/popup/resersala.js" th:src="@{/js/popup/resersala.js}"></script>
+    <script src="/src/main/resources/static/js/popup/script.js" th:src="@{/js/popup/script.js}"></script>
 </body>
 </html>

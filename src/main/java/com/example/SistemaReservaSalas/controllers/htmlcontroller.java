@@ -17,23 +17,40 @@ public class htmlcontroller {
         return modelAndView;
     }
 
-    @GetMapping("/equipamentos")
-    public ModelAndView equipamentos(Model model) {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("listaEquipamentos");
-        return modelAndView;
-    }
     @GetMapping("/salas")
     public ModelAndView salas(Model model) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("listaSalas");
         return modelAndView;
     }
+
     @GetMapping("/reservas")
     public ModelAndView reservas(Model model) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("listaReservas");
         return modelAndView;
     }
+
+    @GetMapping("/usuarios")
+    public ModelAndView usuarios(Model model) {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("usuarios");
+        return modelAndView;
+    }
+
+    @GetMapping("/login")
+    public ModelAndView login(Model model) {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("login");
+        return modelAndView;
+    }
+
+    @GetMapping("/relatorios")
+    public ModelAndView relatorios(Model model) {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("relatorios");
+        return modelAndView;
+    }
+    
 }
     

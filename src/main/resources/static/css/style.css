@@ -1,0 +1,781 @@
+    /* Reset básico */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Roboto', sans-serif;
+        line-height: 1.6;
+        background-color: #f4f4f4;
+        color: #333;
+    }
+
+    /* Estilo para o botão "Adicionar Nova Reserva" fixo no canto superior esquerdo */
+    .btn-add-reserva {
+        position: fixed; /* Fixa o botão na tela */
+        top: 20px; /* Distância do topo da tela */
+        left: 20px; /* Distância da borda esquerda */
+        background-color: #243746; /* Azul escuro */
+        color: #fff;
+        padding: 12px 25px;
+        font-size: 16px;
+        font-weight: bold;
+        text-decoration: none;
+        border-radius: 8px;
+        z-index: 1000; /* Garante que o botão fique acima do conteúdo */
+        transition: background-color 0.3s, transform 0.3s;
+    }
+
+    /* Efeito de hover para o botão */
+    .btn-add-reserva:hover {
+        background-color: #243746; /* Cor mais escura no hover */
+        transform: scale(1.05); /* Leve aumento de tamanho ao passar o mouse */
+    }
+
+    /* Ícone do botão (fa-plus-circle) */
+    .btn-add-reserva i {
+        margin-right: 10px; /* Espaço entre o ícone e o texto */
+    }
+
+
+
+    /* Navbar fixa */
+    .navbar {
+        background-color: #243746;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        padding: 15px 0;
+    }
+
+    .navbar .logo-container {
+        display: inline-block;
+        padding-left: 20px;
+    }
+
+    .navbar .logo {
+        height: 40px;
+    }
+
+    .navbar .menu-buttons {
+        display: inline-block;
+        float: right;
+        padding-right: 20px;
+        list-style: none;
+    }
+
+    .navbar .menu-buttons li {
+        display: inline;
+        margin-left: 20px;
+    }
+
+    .navbar .nav-link {
+        color: white;
+        font-weight: bold;
+        text-decoration: none;
+        font-size: 18px;
+        padding: 10px;
+        display: inline-block;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+
+    .navbar:hover {
+        background-color: #243746;
+    }
+
+    .nav-link:hover {
+        color: #243746; /* Texto branco ao passar o mouse */
+        background-color: #ffffff; /* Fundo azul ao passar o mouse */
+        box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.2); /* Sombra mais intensa */
+        transform: translateY(-3px); /* Efeito de elevação */
+        border: 2px solid #243746; /* Borda azul */
+    }
+
+    /* Container */
+    .container {
+        margin-top: 80px; /* Para compensar o navbar fixo */
+        padding: 20px;
+    }
+
+    header {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    header h1 {
+        font-size: 2.5rem;
+        color: #243746;
+        text-align: center;
+    }
+
+    header p {
+        font-size: 1.2rem;
+        color: #555;
+    }
+
+    /* Efeito de animação para os botões de delete */
+    .btn-delete {
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        background-color: #e91e63; /* Rosa escuro (tom da ID) */
+        color: #fff; /* Cor do texto branca */
+        padding: 10px 20px;
+        font-size: 16px;
+        font-weight: bold;
+        border: none;
+        border-radius: 8px; /* Borda arredondada */
+        cursor: pointer;
+        text-align: center;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px; /* Espaçamento entre ícone e texto */
+    }
+
+    /* Efeito de animação de clique (pulse) */
+    .btn-delete:active {
+        animation: pulse 0.3s ease-out;
+    }
+
+    /* Efeito de hover (quando passar o mouse sobre o botão) */
+    .btn-delete:hover {
+        background-color: #c2185b; /* Rosa mais escuro no hover */
+        transform: scale(1.05); /* Aumento do botão ao passar o mouse */
+    }
+
+    /* Animação de "pulse" para quando o botão for pressionado */
+    @keyframes pulse {
+        0% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.1);
+        }
+        100% {
+            transform: scale(1);
+        }
+    }
+
+    /* Ajuste do ícone dentro do botão */
+    .btn-delete i {
+        font-size: 20px; /* Tamanho do ícone */
+        margin-right: 8px; /* Espaçamento à direita do ícone */
+    }
+
+    /* Estilo para o botão de editar */
+    .btn-edit {
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        background-color: orange;
+        color: #fff; /* Cor do texto branca */
+        padding: 10px 20px;
+        font-size: 16px;
+        font-weight: bold;
+        border: none;
+        border-radius: 8px; /* Bordas arredondadas */
+        cursor: pointer;
+        text-align: center;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px; /* Espaçamento entre ícone e texto */
+    }
+
+    /* Efeito de animação de clique (pulse) */
+    .btn-edit:active {
+        background-color: orange;
+        animation: pulse 0.3s ease-out;
+    }
+
+    /* Efeito de hover (quando passar o mouse sobre o botão) */
+    .btn-edit:hover {
+        background-color: orange;
+        transform: scale(1.05); /* Aumento do botão ao passar o mouse */
+    }
+
+    /* Animação de "pulse" para quando o botão for pressionado */
+    @keyframes pulse {
+        0% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.1);
+        }
+        100% {
+            transform: scale(1);
+        }
+    }
+
+    /* Ajuste do ícone dentro do botão */
+    .btn-edit i {
+        font-size: 20px; /* Tamanho do ícone */
+        margin-right: 8px; /* Espaçamento à direita do ícone */
+    }
+
+
+    /* Animação de "pulse" para quando o botão for pressionado */
+    @keyframes pulse {
+        0% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.1);
+        }
+        100% {
+            transform: scale(1);
+        }
+    }
+
+    /* Estilo para os botões de adicionar */
+    .add-buttons {
+        display: flex;
+        gap: 15px;
+        margin-bottom: 20px;
+    }
+
+    .btn-add {
+        padding: 10px 20px;
+        background-color: #243746;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .btn-add i {
+        font-size: 18px;
+    }
+
+    /* Centralizando os botões de adicionar */
+    .add-buttons {
+        display: flex;
+        justify-content: center; /* Centraliza os botões */
+        gap: 15px;
+        margin-bottom: 20px;
+    }
+
+    /* Estilo dos botões */
+    .btn-add {
+        padding: 10px 20px;
+        background-color: #243746;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .btn-add i {
+        font-size: 18px;
+    }
+
+    /* Estilo para os modais */
+    .modal {
+        display: none; /* Ocultando inicialmente */
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.4);
+        padding-top: 60px;
+        display: flex;
+        justify-content: center; /* Centraliza horizontalmente */
+        align-items: center; /* Centraliza verticalmente */
+    }
+
+    /* Conteúdo do modal */
+    .modal-content {
+        background-color: white;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+        max-width: 500px;
+        border-radius: 8px;
+        text-align: center; /* Centraliza o texto dentro do modal */
+    }
+
+    /* Fechar o modal */
+    .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .modal-content {
+        background-color: #fefefe;
+        margin: 10% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 300px;
+        border-radius: 8px;
+    }
+
+    .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: black;
+        cursor: pointer;
+    }
+
+    .btn-submit {
+        width: 100%;
+        padding: 10px;
+        background-color: #243746;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        margin-top: 15px;
+    }
+
+    .btn-submit:hover {
+        background-color: #d50032;
+    }
+
+
+    .close:hover,
+    .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    /* Estilo para os formulários dentro dos modais */
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        align-items: center; /* Centraliza os itens do formulário */
+    }
+
+    form label {
+        font-size: 16px;
+    }
+
+    form input {
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        width: 100%; /* Garante que os inputs ocupem toda a largura disponível */
+        max-width: 400px; /* Limita a largura máxima dos inputs */
+    }
+
+    form button {
+        padding: 10px;
+        background-color: #243746;
+        border: none;
+        color: white;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        width: 100%;
+        max-width: 400px;
+    }
+
+    form button:hover {
+        background-color: #d50032;
+    }
+
+    .filters {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-bottom: 20px;
+    }
+
+    .filter-input {
+        padding: 8px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        width: 200px;
+    }
+
+    .search-button {
+        padding: 10px;
+        background-color: #243746;
+        border: none;
+        color: white;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .search-button:hover {
+        background-color: #d50032;
+    }
+
+    /* Filtros: Centralizados */
+    .filters {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin: 20px 0;
+    }
+
+    .filter-search {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        border: 1px solid #ffffff;
+        border-radius: 5px;
+    }
+
+    .search-input {
+        padding: 10px;
+        font-size: 16px;
+        border: none;
+        outline: none;
+        width: 300px;
+    }
+
+    .search-button {
+        padding: 11px;
+        background-color: #243746;
+        border: none;
+        color: white;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .search-button:hover {
+        background-color: #d50032;
+    }
+
+    /* Filtro de Estado */
+    .filter-status select {
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        width: 250px;
+        cursor: pointer;
+    }
+
+    /* Filtro de Capacidade */
+    .filter-capacity select {
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        width: 200px;
+        cursor: pointer;
+    }
+
+    /* Filtro de Tipo de Sala */
+    .filter-type select {
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        width: 200px;
+        cursor: pointer;
+    }
+
+
+    /* Estilo para o botão de Reservar */
+    .btn-reserve {
+        display: inline-flex;
+        align-items: center;
+        padding: 8px 16px;
+        font-size: 16px;
+        font-weight: bold;
+        color: white;
+        background-color: #28a745; /* Verde */
+        border: 2px solid #28a745; /* Bordas com a mesma cor */
+        border-radius: 8px; /* Bordas arredondadas */
+        transition: background-color 0.3s, transform 0.3s;
+        cursor: pointer;
+        text-decoration: none;
+    }
+
+    .btn-reserve i {
+        margin-right: 8px; /* Espaço entre o ícone e o texto */
+    }
+
+    .btn-reserve:hover {
+        background-color: #218838; /* Cor mais escura quando passar o mouse */
+        transform: scale(1.05); /* Efeito de aumento ao passar o mouse */
+    }
+
+    .btn-reserve:active {
+        background-color: #1e7e34; /* Cor ainda mais escura ao clicar */
+        transform: scale(0.98); /* Efeito de diminuição ao clicar */
+    }
+
+    .btn-reserve:focus {
+        outline: none;
+        box-shadow: 0 0 5px rgba(40, 167, 69, 0.7); /* Sombra ao focar */
+    }
+
+
+
+    /* Estilo geral para as tabelas */
+    table {
+        width: 80%; /* Define uma largura máxima de 80% da tela */
+        max-width: 1200px; /* Define uma largura máxima para grandes telas */
+        margin: 20px auto; /* Centraliza a tabela horizontalmente com margem em cima e embaixo */
+        border-collapse: collapse;
+        font-family: Arial, sans-serif;
+        color: #333; /* Cor do texto */
+        border: 1px solid #e1e1e1; /* Bordas suaves */
+        border-radius: 8px; /* Bordas arredondadas apenas nos cantos externos */
+        overflow: hidden; /* Garante que os cantos arredondados não sejam cortados */
+    }
+
+    /* Cabeçalho da tabela */
+    th {
+        background-color: #243746; /* Cor da identidade visual */
+        color: #ffffff; /* Cor do texto */
+        font-weight: bold;
+        padding: 12px 15px;
+        text-align: left;
+        text-transform: uppercase;
+    }
+
+    /* Linhas da tabela */
+    td {
+        background-color: #ffffff;
+        padding: 10px 15px;
+        text-align: left;
+        border-bottom: 1px solid #e1e1e1;
+    }
+
+    /* Linhas alternadas para melhor legibilidade */
+    tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+    /* Efeito de hover nas linhas da tabela */
+    tr:hover {
+        background-color: #f1f1f1;
+    }
+
+    /* Estilo do footer da tabela */
+    tfoot td {
+        background-color: #243746;
+        color: #ffffff;
+        font-weight: bold;
+        text-align: right;
+        padding: 12px 15px;
+    }
+
+    /* Bordas arredondadas apenas nos cantos da tabela */
+    table th:first-child {
+        border-top-left-radius: 8px; /* Arredonda o canto superior esquerdo */
+    }
+
+    table th:last-child {
+        border-top-right-radius: 8px; /* Arredonda o canto superior direito */
+    }
+
+    table tfoot td:first-child {
+        border-bottom-left-radius: 8px; /* Arredonda o canto inferior esquerdo */
+    }
+
+    table tfoot td:last-child {
+        border-bottom-right-radius: 8px; /* Arredonda o canto inferior direito */
+    }
+
+    /* Estilo para tabelas responsivas */
+    @media screen and (max-width: 768px) {
+        table {
+            width: 90%; /* Reduz a largura da tabela em telas menores */
+            font-size: 14px;
+        }
+
+        th, td {
+            padding: 8px;
+        }
+    }
+
+
+    /* Rodapé fixo */
+    footer {
+        background-color: #243746;
+        color: white;
+        padding: 10px;
+        text-align: center;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+    }
+
+    footer p {
+        margin: 0;
+    }
+
+    /* Responsividade */
+    @media (max-width: 768px) {
+        .navbar .menu-buttons {
+            display: block;
+            padding-left: 20px;
+            text-align: center;
+        }
+
+        .navbar .menu-buttons li {
+            display: block;
+            margin: 10px 0;
+        }
+
+        table th, table td {
+            font-size: 14px;
+            padding: 10px;
+        }
+    }
+
+    /* Estilo para o fundo do modal */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    /* Conteúdo do modal */
+    .modal-content {
+        background-color: #fff;
+        margin: 10% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 300px;
+        border-radius: 8px;
+    }
+
+    .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .close:hover {
+        color: #d50032;
+    }
+
+    /* Seção de boas-vindas */
+    .welcome {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .welcome h2 {
+        font-size: 28px;
+        color: #243746; /* Azul representativo (ajuste conforme a identidade) */
+        margin-bottom: 10px;
+    }
+
+    .welcome p {
+        font-size: 16px;
+        color: #555; /* Cinza suave para o texto */
+    }
+
+    /* Container do menu */
+    .menu-container {
+        width: 400px;
+        padding: 20px;
+        border: 3px solid #243746; /* Azul principal */
+        border-radius: 10px; /* Bordas arredondadas */
+        background: linear-gradient(145deg, #ffffff, #ffffff); /* Fundo degradê suave */
+        box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1); /* Sombra elegante */
+        text-align: center;
+        justify-content: center;
+    }
+
+    /* Lista de botões */
+    .menu-center {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        justify-content: center;
+    }
+
+    .nav-link-center {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        text-decoration: none;
+        font-size: 18px;
+        font-weight: bold;
+        color: #243746; /* Azul principal */
+        padding: 12px 20px;
+        border: 2px solid #243746; /* Borda azul */
+        border-radius: 10px;
+        background-color: #ffffff; /* Fundo branco */
+        box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+        transition: all 0.3s ease;
+    }
+
+    .nav-link-center:hover {
+        color: #ffffff; /* Texto branco ao passar o mouse */
+        background-color: #243746; /* Fundo azul ao passar o mouse */
+        box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.2); /* Sombra mais intensa */
+        transform: translateY(-3px); /* Efeito de elevação */
+    }
+
+    /* Ícones */
+    .nav-link-center i {
+        font-size: 20px;
+    }
+
+    /* Responsividade */
+    @media (max-width: 500px) {
+        .menu-container {
+            width: 90%;
+        }
+
+        .welcome h2 {
+            font-size: 24px;
+        }
+
+        .welcome p {
+            font-size: 14px;
+        }
+    }
+
+
+
+    

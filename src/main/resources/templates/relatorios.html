@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatórios de Utilização e Manutenção</title>
+
+    <link rel="stylesheet" href="/src/main/resources/static/css/style.css">
+    <link rel="stylesheet" href="/src/main/resources/static/css/relatorios.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navbar fixa -->
+    <nav class="navbar">
+        <div class="logo-container">
+            <a href="/page/home">
+                <img src="https://bioparkeducacao.com/wp-content/uploads/2023/08/biopark-logo-2.png" alt="Logo do Sistema" class="logo">
+            </a>
+        </div>
+        <ul class="menu-buttons">
+            <li><a href="/salas" class="nav-link">Salas</a></li>
+            <li><a href="/equipamentos" class="nav-link">Equipamentos</a></li>
+            <li><a href="/reservas" class="nav-link">Reservas</a></li>
+            <li><a href="/relatorios" class="nav-link">Relatorios</a></li>
+            <li><a href="/usuarios" class="nav-link">Usuários</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <header>
+            <h1>Relatórios de Utilização e Manutenção</h1>
+        </header>
+        <main>
+            <!-- Seleção do Tipo de Relatório -->
+            <div class="report-type">
+                <button id="generalReportBtn" class="active">Relatório Geral</button>
+                <button id="roomReportBtn">Relatório por Sala</button>
+                <button id="equipmentReportBtn">Relatório por Equipamento</button>
+            </div>
+
+            <!-- Relatório Geral -->
+            <div id="generalReport" class="report-section">
+                <h2>Relatório Geral</h2>
+                <div class="filters">
+                    <label for="generalDate">Selecione a Data:</label>
+                    <input type="date" id="generalDate">
+                    <button id="generalFilterButton">Gerar Relatório</button>
+                </div>
+                <div class="report-table">
+                    <h3>Salas</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nome</th>
+                                <th>Último Responsável</th>
+                                <th>Última Data Registrada</th>
+                            </tr>
+                        </thead>
+                        <tbody id="generalRoomBody">
+                            <!-- Linhas preenchidas dinamicamente -->
+                        </tbody>
+                    </table>
+
+                    <h3>Equipamentos</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nome</th>
+                                <th>Último Responsável</th>
+                                <th>Última Data Registrada</th>
+                            </tr>
+                        </thead>
+                        <tbody id="generalEquipmentBody">
+                            <!-- Linhas preenchidas dinamicamente -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Relatório por Sala -->
+            <div id="roomReport" class="report-section hidden">
+                <h2>Relatório por Sala</h2>
+                <div class="filters">
+                    <label for="roomName">Sala:</label>
+                    <input type="text" id="roomName" placeholder="Digite o nome ou ID da sala">
+                    <button id="roomFilterButton">Buscar</button>
+                </div>
+                <div class="report-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nome</th>
+                                <th>Capacidade</th>
+                                <th>Último Responsável</th>
+                            </tr>
+                        </thead>
+                        <tbody id="roomReportBody">
+                            <!-- Linhas preenchidas dinamicamente -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Relatório por Equipamento -->
+            <div id="equipmentReport" class="report-section hidden">
+                <h2>Relatório por Equipamento</h2>
+                <div class="filters">
+                    <label for="equipmentName">Equipamento:</label>
+                    <input type="text" id="equipmentName" placeholder="Digite o nome ou ID do equipamento">
+                    <button id="equipmentFilterButton">Buscar</button>
+                </div>
+                <div class="report-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nome</th>
+                                <th>Última Data Registrada</th>
+                                <th>Histórico de Uso</th>
+                                <th>Último Responsável</th>
+                                <th>Data da Última Manutenção</th>
+                                <th>Data para Próxima Revisão</th>
+                            </tr>
+                        </thead>
+                        <tbody id="equipmentReportBody">
+                            <!-- Linhas preenchidas dinamicamente -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="/src/main/resources/static/js/popup/relatorio.js"></script>
+    <script src="/src/main/resources/static/js/popup/script.js"></script>
+
+</body>
+</html>

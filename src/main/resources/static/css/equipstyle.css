@@ -1,0 +1,165 @@
+/* Ajustes na tabela de equipamentos */
+.equipment-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.equipment-table th, .equipment-table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.equipment-table th {
+    background-color: #243746;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.equipment-table td {
+    background-color: #ffffff;
+    color: #333;
+    font-size: 14px;
+}
+
+/* Estilo para os botões de ação na tabela */
+.equipment-table button {
+    padding: 8px 16px;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+}
+
+.equipment-table .btn-edit {
+    background-color: #ffa500; /* Cor para o botão de editar */
+    color: white;
+}
+
+.equipment-table .btn-edit:hover {
+    background-color: #ff8c00;
+    transform: scale(1.05);
+}
+
+.equipment-table .btn-delete {
+    background-color: #e91e63; /* Cor para o botão de deletar */
+    color: white;
+}
+
+.equipment-table .btn-delete:hover {
+    background-color: #c2185b;
+    transform: scale(1.05);
+}
+
+/* Melhorias no botão de adicionar equipamento */
+.btn-add-equipment {
+    padding: 12px 25px;
+    background-color: #243746;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    display: inline-block;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+}
+
+.btn-add-equipment:hover {
+    background-color: #5a7f91;
+    transform: scale(1.05);
+}
+
+/* Estilos para o formulário de adicionar equipamento */
+.sectionForms {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+.sectionForms h4 {
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: #243746;
+}
+
+.row-element-25 {
+    width: 23%;
+    margin-right: 2%;
+}
+
+.row-element-25:last-child {
+    margin-right: 0;
+}
+
+.row-element-25 label {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 8px;
+}
+
+.row-element-25 input,
+.row-element-25 select {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Botões do formulário */
+.form-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.form-buttons button {
+    padding: 10px 20px;
+    font-size: 14px;
+    color: white;
+    background-color: #243746;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.form-buttons button:hover {
+    background-color: #5a7f91;
+}
+
+/* Estilo para a seção de filtros */
+.filters {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.filter-input {
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 200px;
+}
+
+.search-button {
+    padding: 10px;
+    background-color: #243746;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.search-button:hover {
+    background-color: #d50032;
+}

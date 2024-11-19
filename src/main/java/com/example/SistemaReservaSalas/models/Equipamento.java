@@ -18,13 +18,17 @@ public class Equipamento {
     public Equipamento() { }
 
     // Construtor com parâmetros
-    public Equipamento(String nome, StatusEquipamento status) {
+     public Equipamento(Long id, String nome, StatusEquipamento status) {
+        this.id = id;
         this.nome = nome;
         this.status = status;
     }
-
+   
     // Getters e setters
     public Long getId() { return id; }
+   
+   
+
     public void setId(Long id) { this.id = id; }
 
     public String getNome() { return nome; }
