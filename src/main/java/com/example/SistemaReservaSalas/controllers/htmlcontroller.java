@@ -46,7 +46,7 @@ public class htmlcontroller {
     }
 
     @GetMapping("/relatorios")
-    public ModelAndView relatorios(Model model) {
+    public ModelAndView relatorio(Model model) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("relatorios");
         return modelAndView;

@@ -777,5 +777,55 @@
     }
 
 
+/*Relatorios
 
-    
+/* Ajuste para os botões de relatórios */
+.report-button {
+    background-color: #f1f1f1;
+    border: 1px solid #ddd;
+    padding: 10px 20px;
+    margin-right: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.report-button.active {
+    background-color: #243746;
+    color: white;
+}
+
+.report-button:hover {
+    background-color: #ddd;
+}
+
+/* Estilo para as tabelas */
+.report-table table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.report-table th, .report-table td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+.report-table th {
+    background-color: #243746;
+}
+
+.btn-reserve {
+    background-color: #28a745;
+    color: white;
+    padding: 5px 10px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-reserve:hover {
+    background-color: #218838;
+}

@@ -5,12 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Relatórios de Utilização e Manutenção</title>
 
-    <link rel="stylesheet" href="/src/main/resources/static/css/style.css">
-    <link rel="stylesheet" href="/src/main/resources/static/css/relatorios.css">
+    <link rel="stylesheet" th:href="@{/css/style.css}" href="/src/main/resources/static/css/style.css">
+    <link rel="stylesheet" th:href="@{/css/relatorios.css}" href="/src/main/resources/static/css/relatorios.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Navbar fixa -->
     <nav class="navbar">
         <div class="logo-container">
             <a href="/page/home">
@@ -18,13 +17,14 @@
             </a>
         </div>
         <ul class="menu-buttons">
-            <li><a href="/salas" class="nav-link">Salas</a></li>
-            <li><a href="/equipamentos" class="nav-link">Equipamentos</a></li>
-            <li><a href="/reservas" class="nav-link">Reservas</a></li>
-            <li><a href="/relatorios" class="nav-link">Relatorios</a></li>
-            <li><a href="/usuarios" class="nav-link">Usuários</a></li>
+            <li><a th:href="@{/salas}" class="nav-link">Salas</a></li>
+            <li><a th:href="@{/equipamentos}" class="nav-link">Equipamentos</a></li>
+            <li><a th:href="@{/reservas}" class="nav-link">Reservas</a></li>
+            <li><a th:href="@{/page/relatorios}" class="nav-link">Relatórios</a></li>
+            <li><a th:href="@{/usuarios}" class="nav-link">Usuários</a></li>
         </ul>
     </nav>
+
 
     <div class="container">
         <header>
@@ -32,21 +32,26 @@
         </header>
         <main>
 
-            <div class="rmenu-buttons">
-                <button id="generalReportBtn" class="active">Relatório Geral</button>
-                <button id="roomReportBtn">Relatório por Sala</button>
-                <button id="equipmentReportBtn">Relatório por Equipamento</button>
+            <!-- Botões de navegação dos relatórios -->
+            <div class="menu-buttons">
+                <button id="generalReportBtn" class="report-button active">Relatório Geral</button>
+                <button id="roomReportBtn" class="report-button">Relatório por Sala</button>
+                <button id="equipmentReportBtn" class="report-button">Relatório por Equipamento</button>
             </div>
 
+
+
+
+
             <!-- Relatório Geral -->
-            <div id="generalReport" class="report-section">
+            <section id="generalReport" class="report-section">
                 <h2>Relatório Geral</h2>
                 <div class="filters">
                     <label for="generalDate">Selecione a Data:</label>
                     <input type="date" id="generalDate">
                     <button id="generalFilterButton">Gerar Relatório</button>
                 </div>
-                <div class="report-table">
+                <div div class="container">
                     <h3>Salas</h3>
                     <table>
                         <thead>
@@ -61,6 +66,7 @@
                             <!-- Linhas preenchidas dinamicamente -->
                         </tbody>
                     </table>
+                    
 
                     <h3>Equipamentos</h3>
                     <table>
@@ -70,6 +76,8 @@
                                 <th>Nome</th>
                                 <th>Último Responsável</th>
                                 <th>Última Data Registrada</th>
+                                <th>Última Manutenção</th>
+                                <th>Proxíma Manutenção</th>
                             </tr>
                         </thead>
                         <tbody id="generalEquipmentBody">
@@ -77,42 +85,53 @@
                         </tbody>
                     </table>
                 </div>
-            </div>
+            </section>
 
             <!-- Relatório por Sala -->
-            <div id="roomReport" class="report-section hidden">
+            <section id="roomReport" class="report-section hidden">
                 <h2>Relatório por Sala</h2>
                 <div class="filters">
                     <label for="roomName">Sala:</label>
                     <input type="text" id="roomName" placeholder="Digite o nome ou ID da sala">
                     <button id="roomFilterButton">Buscar</button>
                 </div>
-                <div class="report-table">
+                <div class="container">
                     <table>
                         <thead>
                             <tr>
                                 <th>ID</th>
                                 <th>Nome</th>
                                 <th>Capacidade</th>
-                                <th>Último Responsável</th>
+                                <th>Status</th>
+                                <th>Ações</th>
                             </tr>
                         </thead>
-                        <tbody id="roomReportBody">
-                            <!-- Linhas preenchidas dinamicamente -->
+                        <tbody id="room-list">
+                            <tr th:each="sala : ${salas}" id="sala-{sala.id}">
+                                <td th:text="${sala.id}"></td>
+                                <td th:text="${sala.nome}"></td>
+                                <td th:text="${sala.capacidade}"></td>
+                                <td th:text="${sala.status}"></td>
+                                <td>
+                                    <button class="btn-reserve" onclick="openReserveModal('${sala.id}', '${sala.nome}')">
+                                        <i class="fas fa-calendar-alt"></i> Reservar
+                                    </button>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
-            </div>
+            </section>
 
             <!-- Relatório por Equipamento -->
-            <div id="equipmentReport" class="report-section hidden">
+            <section id="equipmentReport" class="report-section hidden">
                 <h2>Relatório por Equipamento</h2>
                 <div class="filters">
                     <label for="equipmentName">Equipamento:</label>
                     <input type="text" id="equipmentName" placeholder="Digite o nome ou ID do equipamento">
                     <button id="equipmentFilterButton">Buscar</button>
                 </div>
-                <div class="report-table">
+                <div class="container">
                     <table>
                         <thead>
                             <tr>
@@ -130,12 +149,14 @@
                         </tbody>
                     </table>
                 </div>
-            </div>
+            </section>
         </main>
     </div>
 
     <script src="/src/main/resources/static/js/relatorio.js" th:src="@{/js/relatorio.js}"></script>
     <script src="/src/main/resources/static/js/script.js" th:src="@{/js/script.js}"></script>
-
+    <footer>
+        <p>&copy; 2024 Biopark Educação | Todos os direitos reservados</p>
+    </footer>
 </body>
 </html>
