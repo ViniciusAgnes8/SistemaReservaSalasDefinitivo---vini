@@ -31,8 +31,8 @@
             <h1>Relatórios de Utilização e Manutenção</h1>
         </header>
         <main>
-            <!-- Seleção do Tipo de Relatório -->
-            <div class="report-type">
+
+            <div class="rmenu-buttons">
                 <button id="generalReportBtn" class="active">Relatório Geral</button>
                 <button id="roomReportBtn">Relatório por Sala</button>
                 <button id="equipmentReportBtn">Relatório por Equipamento</button>
@@ -134,8 +134,8 @@
         </main>
     </div>
 
-    <script src="/src/main/resources/static/js/popup/relatorio.js"></script>
-    <script src="/src/main/resources/static/js/popup/script.js"></script>
+    <script src="/src/main/resources/static/js/relatorio.js" th:src="@{/js/relatorio.js}"></script>
+    <script src="/src/main/resources/static/js/script.js" th:src="@{/js/script.js}"></script>
 
 </body>
 </html>
