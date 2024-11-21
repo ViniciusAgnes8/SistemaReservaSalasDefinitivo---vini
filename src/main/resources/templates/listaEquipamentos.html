@@ -70,37 +70,37 @@
             </table>
         </div>
     </section>
+    
+        <div id="reserve-modal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <span class="close-btn" onclick="closeReserveModal()">&times;</span>
+                <h2>Reservar Equipamento</h2>
+                <p>Equipamento: <span id="nome-equipamento"></span></p>
+                <form th:action="@{/reservar-direto/equipamento/{id}(id=${equipamentoId})}" method="post" th:object="${reservaDTO}" id="reserve-form" onsubmit="handleReservation(event)">
+                    <input type="hidden" id="equipamento-id" name="equipamento-id" th:value="${equipamentoId}">
+                    <label for="nome">Nome:</label>
+                    <input type="text" id="nome" name="nome" th:field="*{nome}" required>
+    
+                    <label for="email">E-mail:</label>
+                    <input type="email" id="email" name="email" th:field="*{email}" required>
+    
+                    <label for="data">Data:</label>
+                    <input type="date" id="data" name="data" th:field="*{data}" required>
+    
+                    <label for="entrada">Horário de Entrada:</label>
+                    <input type="time" id="entrada" name="entrada" th:field="*{entrada}" required>
+    
+                    <label for="saida">Horário de Saída:</label>
+                    <input type="time" id="saida" name="saida" th:field="*{saida}" required>
+    
+                    <button type="submit">Confirmar Reserva</button>
+                </form>
+            </div>
+        </div>
 
     <footer>
         <p>&copy; 2024 Biopark Educação | Todos os direitos reservados</p>
     </footer>
-
-    <div id="reserve-modal" class="modal" style="display: none;">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeReserveModal()">&times;</span>
-            <h2>Reservar Equipamento</h2>
-            <p>Equipamento: <span id="nome-equipamento"></span></p>
-            <form th:action="@{/reservar-direto/equipamento/{id}(id=${equipamentoId})}" method="post" th:object="${reservaDTO}" id="reserve-form" onsubmit="handleReservation(event)">
-                <input type="hidden" id="equipamento-id" name="equipamento-id" th:value="${equipamentoId}">
-                <label for="nome">Nome:</label>
-                <input type="text" id="nome" name="nome" th:field="*{nome}" required>
-
-                <label for="email">E-mail:</label>
-                <input type="email" id="email" name="email" th:field="*{email}" required>
-
-                <label for="data">Data:</label>
-                <input type="date" id="data" name="data" th:field="*{data}" required>
-
-                <label for="entrada">Horário de Entrada:</label>
-                <input type="time" id="entrada" name="entrada" th:field="*{entrada}" required>
-
-                <label for="saida">Horário de Saída:</label>
-                <input type="time" id="saida" name="saida" th:field="*{saida}" required>
-
-                <button type="submit">Confirmar Reserva</button>
-            </form>
-        </div>
-    </div>
 
     <script th:src="@{/js/popup/reserva-equipamentos.js}"></script>
     <script th:src="@{/js/script.js}"></script>

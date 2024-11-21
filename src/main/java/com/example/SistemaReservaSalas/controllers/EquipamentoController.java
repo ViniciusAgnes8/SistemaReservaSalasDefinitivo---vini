@@ -10,7 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping("/equipamentos")
 public class EquipamentoController {
 
@@ -20,12 +20,11 @@ public class EquipamentoController {
         this.equipamentoService = equipamentoService;
     }
 
-    // Método que lida com a URL /equipamentos
     @GetMapping
     public ModelAndView equipamentos(Model model) {
         List<Equipamento> equipamentos = equipamentoService.listarEquipamentos();
-        model.addAttribute("equipamentos", equipamentos); // Passa os equipamentos para o modelo
-        return new ModelAndView("listaEquipamentos"); // Retorna o template Thymeleaf
+        model.addAttribute("equipamentos", equipamentos);
+        return new ModelAndView("listaEquipamentos"); 
     }
 
     @GetMapping("/json")
@@ -42,7 +41,7 @@ public class EquipamentoController {
 
     @PostMapping("/adicionar")
     public String adicionarEquipamento(@ModelAttribute Equipamento equipamento) {
-        equipamentoService.salvar(equipamento);
+        equipamentoService.salvarEquipamento(equipamento);
         return "redirect:/equipamentos";
     }
 
@@ -53,3 +52,4 @@ public class EquipamentoController {
         return "Equipamento excluído com sucesso";
     }
 }
+
