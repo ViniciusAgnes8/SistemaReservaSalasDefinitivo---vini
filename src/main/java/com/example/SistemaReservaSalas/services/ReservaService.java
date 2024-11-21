@@ -1,6 +1,7 @@
 package com.example.SistemaReservaSalas.services;
 
 import com.example.SistemaReservaSalas.models.Reserva;
+import com.example.SistemaReservaSalas.models.ReservaDTO;
 import com.example.SistemaReservaSalas.repositories.ReservaRepository;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -31,7 +32,12 @@ public class ReservaService {
     }
 
     // Excluir uma reserva pelo ID
-    public void excluirReserva(Long id) {
+    public void excluirReserva(Long id) {   
         reservaRepository.deleteById(id);
+    }
+
+    public String reservarEquipamento(Long idEquipamento, ReservaDTO reservaDTO) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'reservarEquipamento'");
     }
 }

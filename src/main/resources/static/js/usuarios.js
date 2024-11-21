@@ -3,7 +3,7 @@ document.getElementById('addUserForm').addEventListener('submit', function (e) {
 
     const nome = document.getElementById('nome').value;
     const email = document.getElementById('email').value;
-    const acesso = document.getElementById('acesso').value;
+    const acesso = document.getElementById('tipoUsuario').value;
     const senha = document.getElementById('senha').value;
 
     const userList = document.getElementById('userList');

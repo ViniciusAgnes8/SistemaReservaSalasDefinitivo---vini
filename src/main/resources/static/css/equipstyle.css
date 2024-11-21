@@ -1,4 +1,4 @@
-/* Ajustes na tabela de equipamentos */
+/* Já existente: Ajustes na tabela de equipamentos */
 .equipment-table {
     width: 100%;
     border-collapse: collapse;
@@ -24,7 +24,7 @@
     font-size: 14px;
 }
 
-/* Estilo para os botões de ação na tabela */
+/* Já existente: Estilo para os botões de ação na tabela */
 .equipment-table button {
     padding: 8px 16px;
     font-size: 14px;
@@ -54,7 +54,7 @@
     transform: scale(1.05);
 }
 
-/* Melhorias no botão de adicionar equipamento */
+/* Já existente: Melhorias no botão de adicionar equipamento */
 .btn-add-equipment {
     padding: 12px 25px;
     background-color: #243746;
@@ -73,7 +73,7 @@
     transform: scale(1.05);
 }
 
-/* Estilos para o formulário de adicionar equipamento */
+/* Já existente: Estilos para o formulário de adicionar equipamento */
 .sectionForms {
     background-color: #fff;
     padding: 20px;
@@ -112,7 +112,7 @@
     border-radius: 5px;
 }
 
-/* Botões do formulário */
+/* Já existente: Botões do formulário */
 .form-buttons {
     display: flex;
     justify-content: space-between;
@@ -134,7 +134,7 @@
     background-color: #5a7f91;
 }
 
-/* Estilo para a seção de filtros */
+/* Já existente: Estilo para a seção de filtros */
 .filters {
     display: flex;
     justify-content: center;
@@ -161,5 +161,150 @@
 }
 
 .search-button:hover {
+    background-color: #d50032;
+}
+
+
+/* --- Novos estilos para a reserva --- */
+
+/* Estilo do Modal de Reserva */
+#reserve-modal {
+    display: none; /* Inicialmente oculto */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    width: 500px;
+    max-width: 90%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo do título do Modal */
+.modal-content h2 {
+    font-size: 22px;
+    color: #243746;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Botão de fechar */
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 18px;
+    color: #aaa;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close-btn:hover {
+    color: #ff0000;
+}
+
+/* Formulário de reserva */
+#reserve-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+#reserve-form label {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 8px;
+}
+
+#reserve-form input {
+    padding: 12px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+}
+
+#reserve-form input[type="date"],
+#reserve-form input[type="time"],
+#reserve-form input[type="text"],
+#reserve-form input[type="email"] {
+    margin-bottom: 10px;
+}
+
+/* Botão de confirmação da reserva */
+#reserve-form button {
+    padding: 12px 20px;
+    background-color: #243746;
+    color: white;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border: none;
+}
+
+#reserve-form button:hover {
+    background-color: #5a7f91;
+}
+
+/* Estilo para o botão de reserva dentro da tabela */
+.equipment-table .btn-reserve {
+    background-color: #243746;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+}
+
+.equipment-table .btn-reserve:hover {
+    background-color: #5a7f91;
+    transform: scale(1.05);
+}
+
+/* Filtros na seção de equipamentos */
+.filters .filter-search {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.filter-search input {
+    padding: 8px;
+    font-size: 16px;
+    border-radius: 5px;
+    width: 200px;
+}
+
+.filter-status select {
+    padding: 8px;
+    font-size: 16px;
+    border-radius: 5px;
+    width: 200px;
+}
+
+.filter-search button {
+    padding: 10px;
+    background-color: #243746;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.filter-search button:hover {
     background-color: #d50032;
 }

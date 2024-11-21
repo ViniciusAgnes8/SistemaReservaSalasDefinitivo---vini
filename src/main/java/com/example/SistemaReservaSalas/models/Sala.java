@@ -1,6 +1,14 @@
 package com.example.SistemaReservaSalas.models;
 
-import jakarta.persistence.*;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+
 
 @Entity
 public class Sala {
@@ -11,13 +19,14 @@ public class Sala {
 
     private String nome;
 
+  
     private int capacidade;
 
     @Enumerated(EnumType.STRING)
     private StatusSala status;
 
     // Construtor padrão
-    public Sala() { }
+    public Sala() {}
 
     // Construtor com parâmetros
     public Sala(Long id, String nome, int capacidade, StatusSala status) {
@@ -28,19 +37,38 @@ public class Sala {
     }
 
     // Getters e setters
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public Long getId() {
+        return id;
+    }
 
-    public String getNome() { return nome; }
-    public void setNome(String nome) { this.nome = nome; }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    public int getCapacidade() { return capacidade; }
-    public void setCapacidade(int capacidade) { this.capacidade = capacidade; }
+    public String getNome() {
+        return nome;
+    }
 
-    public StatusSala getStatus() { return status; }
-    public void setStatus(StatusSala status) { this.status = status; }
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
-    // Enum para Status da Sala
+    public int getCapacidade() {
+        return capacidade;
+    }
+
+    public void setCapacidade(int capacidade) {
+        this.capacidade = capacidade;
+    }
+
+    public StatusSala getStatus() {
+        return status;
+    }
+
+    public void setStatus(StatusSala status) {
+        this.status = status;
+    }
+
     public enum StatusSala {
         DISPONIVEL,
         EM_MANUTENCAO,

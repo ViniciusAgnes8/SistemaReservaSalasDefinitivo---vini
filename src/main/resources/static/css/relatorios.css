@@ -94,8 +94,9 @@ header h1 {
 }
 
 .report-section.active {
-    display: block;
+    display: block; /* Visível quando ativo */
 }
+    
 
 /* Tabelas */
 table {

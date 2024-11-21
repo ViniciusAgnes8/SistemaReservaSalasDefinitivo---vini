@@ -1,7 +1,9 @@
 package com.example.SistemaReservaSalas.models;
 
 import jakarta.persistence.*;
+
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 public class Reserva {
@@ -13,40 +15,68 @@ public class Reserva {
     private String nome;
 
     @ManyToOne
-    @JoinColumn(name = "sala_id", nullable = false)
-    private Sala sala;
-
-    @ManyToOne
     @JoinColumn(name = "usuario_id", nullable = false)
     private Usuario usuario;
 
     private LocalDateTime dataReserva;
 
-    // Construtor padrão
-    public Reserva() { }
+    @ManyToMany
+    @JoinTable(
+        name = "equipamento_reserva",
+        joinColumns = @JoinColumn(name = "reserva_id"),
+        inverseJoinColumns = @JoinColumn(name = "equipamento_id")
+    )
+    private List<Equipamento> equipamentos;
 
-    // Construtor com parâmetros
-    public Reserva(Long id, String nome, Sala sala, Usuario usuario, LocalDateTime dataReserva) {
+    public Reserva() {
+    }
+
+    public Reserva(Long id, String nome, Usuario usuario, LocalDateTime dataReserva, List<Equipamento> equipamentos) {
         this.id = id;
         this.nome = nome;
-        this.sala = sala;
         this.usuario = usuario;
         this.dataReserva = dataReserva;
+        this.equipamentos = equipamentos;
     }
 
     // Getters e setters
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public Long getId() {
+        return id;
+    }
 
-    public String getNome() { return nome; }
-    public void setNome(String nome) { this.nome = nome; }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    public Sala getSala() { return sala; }
-    public void setSala(Sala sala) { this.sala = sala; }
+    public String getNome() {
+        return nome;
+    }
 
-    public Usuario getUsuario() { return usuario; }
-    public void setUsuario(Usuario usuario) { this.usuario = usuario; }
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
-    public LocalDateTime getDataReserva() { return dataReserva; }
-    public void setDataReserva(LocalDateTime dataReserva) { this.dataReserva = dataReserva; }
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public LocalDateTime getDataReserva() {
+        return dataReserva;
+    }
+
+    public void setDataReserva(LocalDateTime dataReserva) {
+        this.dataReserva = dataReserva;
+    }
+
+    public List<Equipamento> getEquipamentos() {
+        return equipamentos;
+    }
+
+    public void setEquipamentos(List<Equipamento> equipamentos) {
+        this.equipamentos = equipamentos;
+    }
 }

@@ -1,16 +1,15 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gerenciamento de Usuários</title>
-    <link rel="stylesheet" href="/src/main/resources/static/css/style.css" th:href="@{/css/style.css}">
-    <link rel="stylesheet" href="/src/main/resources/static/css/usuarios.css" th:href="@{/css/usuario.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+    <link rel="stylesheet" th:href="@{/css/usuario.css}" />
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <!-- Navbar fixa -->
     <nav class="navbar">
         <div class="logo-container">
             <a th:href="@{/page/home}">
@@ -26,28 +25,31 @@
         </ul>
     </nav>
 
-    <div class="container">
-        <header>
-            <h1>Gerenciamento de Usuários</h1>
-        </header>
-
-        <main>
-            <!-- Botão para abrir o modal -->
-            <button id="btnAddUser" class="btn-add">Adicionar Usuário</button>
+    <section class="content">
+        <div class="container">
+            <header>
+                <h1>Gerenciamento de Usuários</h1>
+                <div class="add-buttons">
+                    <button class="btn-add" id="btnAddUser">
+                        <i class="fas fa-plus"></i> Adicionar Usuário
+                    </button>
+                </div>
+            </header>
 
             <!-- Modal para Adicionar Usuário -->
             <div id="addUserModal" class="modal">
                 <div class="modal-content">
-                    <span class="close" id="closeModal">&times;</span>
-                    <form action="/usuarios/adicionar" method="post" id="addUsuarioForm">
+                    <span class="close-btn" onclick="closeModal('addUserModal')">&times;</span>
+                    <h2>Adicionar Usuário</h2>
+                    <form id="addUserForm" th:action="@{/usuarios/salvar}" method="POST">
                         <label for="nome">Nome:</label>
-                        <input type="text" id="nome" name="nome" required>
+                        <input type="text" id="nome" name="nome" th:value="${usuario.nome}" required>
 
                         <label for="email">E-mail:</label>
-                        <input type="email" id="email" name="email" required>
+                        <input type="email" id="email" name="email" th:value="${usuario.email}" required>
 
-                        <label for="acesso">Nível de Acesso:</label>
-                        <select id="acesso" name="acesso" required>
+                        <label for="tipoUsuario">Nível de Acesso:</label>
+                        <select id="tipoUsuario" name="tipoUsuario" th:value="${usuario.tipoUsuario}" required>
                             <option value="COMUM">Usuário Comum</option>
                             <option value="ADMINISTRADOR">Administrador</option>
                             <option value="GERENTE_TI">Gerente de TI</option>
@@ -56,7 +58,7 @@
                         <label for="senha">Senha:</label>
                         <input type="password" id="senha" name="senha" required>
 
-                        <button type="submit">Adicionar Usuário</button>
+                        <button type="submit">Cadastrar Usuário</button>
                     </form>
                 </div>
             </div>
@@ -72,31 +74,28 @@
                             <th>Ações</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="userList">
                         <tr th:each="usuario : ${usuarios}">
-                            <td th:text="${usuario.nome}">Nome</td>
-                            <td th:text="${usuario.email}">Email</td>
-                            <td th:text="${usuario.nivelAcesso}">Nível de Acesso</td>
+                            <td th:text="${usuario.nome}"></td>
+                            <td th:text="${usuario.email}"></td>
+                            <td th:text="${usuario.tipoUsuario}"></td>
                             <td>
-                                <form th:action="@{/usuarios/remover}" method="post">
-                                    <input type="hidden" name="id" th:value="${usuario.id}">
-                                    <button type="submit">Remover</button>
-                                </form>
-                            </td>
+                                <button class="btn-remove" onclick="confirmarRemoverUsuario(this)">
+                                    <i class="fas fa-trash-alt"></i> Remover
+                                </button>
+                            </td>                            
                         </tr>
                     </tbody>
                 </table>
             </section>
-        </main>
-    </div>
-
-    <!-- JavaScript -->
-    <script src="/src/main/resources/static/js/popup/usuarios.js" th:src="@{/js/popup/usuarios.js}"></script>
-    <script src="/src/main/resources/static/js/popup/script.js" th:src="@{/js/popup/script.js}"></script>
-    <script src="/src/main/resources/static/js/popup/addusuario.js" th:src="@{/js/popup/addusuario.js}"></script>
+        </div>
+    </section>
 
     <footer>
         <p>&copy; 2024 Biopark Educação | Todos os direitos reservados</p>
     </footer>
+    <script th:src="@{/js/script.js}"></script>
+    <script th:src="@{/js/popup/addusuario.js}"></script>
+    <script th:src="@{/js/usuario.js}"></script>
 </body>
 </html>

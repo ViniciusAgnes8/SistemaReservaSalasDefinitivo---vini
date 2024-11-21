@@ -2,6 +2,8 @@ package com.example.SistemaReservaSalas.controllers;
 
 import com.example.SistemaReservaSalas.models.Sala;
 import com.example.SistemaReservaSalas.services.SalaService;
+
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -36,19 +38,29 @@ public class SalaController {
 
     // Buscar uma sala específica pelo ID
     @GetMapping("/{id}")
-    public Optional<Sala> buscarSalaPorId(@PathVariable Long id) {
-        return salaService.buscarSalaPorId(id);
+    public ResponseEntity<Sala> buscarSalaPorId(@PathVariable Long id) {
+        Optional<Sala> sala = salaService.buscarSalaPorId(id);
+        
+        return sala.map(ResponseEntity::ok)
+                   .orElseGet(() -> ResponseEntity.status(404).build()); // Retorna 404 se não encontrado
     }
 
     // Salvar uma nova sala
     @PostMapping("/salvar")
-    public Sala salvarSala(@RequestBody Sala sala) {
-        return salaService.salvarSala(sala);
+    public ResponseEntity<Sala> salvarSala(@RequestBody Sala sala) {
+        Sala salaSalva = salaService.salvarSala(sala);
+        return ResponseEntity.status(201).body(salaSalva);  // Retorna a sala salva com status 201
     }
 
     // Excluir uma sala pelo ID
     @DeleteMapping("/excluir/{id}")
-    public void excluirSala(@PathVariable Long id) {
-        salaService.excluirSala(id);
+    public ResponseEntity<String> excluirSala(@PathVariable Long id) {
+        boolean excluida = salaService.excluirSala(id);
+        
+        if (excluida) {
+            return ResponseEntity.status(204).build();  // Retorna 204 No Content
+        } else {
+            return ResponseEntity.status(404).body("Sala não encontrada");
+        }
     }
 }

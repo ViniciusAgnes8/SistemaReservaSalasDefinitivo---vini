@@ -15,8 +15,17 @@ public class Usuario {
     @Enumerated(EnumType.STRING)  // Enum que define os tipos de usuário
     private TipoUsuario tipoUsuario;
 
-    // Construtores, Getters e Setters
+    // Construtor sem parâmetros
+    public Usuario() {}
 
+    // Construtor com parâmetros
+    public Usuario(String nome, String email, TipoUsuario tipoUsuario) {
+        this.nome = nome;
+        this.email = email;
+        this.tipoUsuario = tipoUsuario;
+    }
+
+    // Getters e Setters
     public Long getId() {
         return id;
     }

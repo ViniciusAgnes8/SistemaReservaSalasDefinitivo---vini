@@ -31,7 +31,7 @@ public class SalaService {
     }
 
     // Excluir uma sala pelo ID
-    public void excluirSala(Long id) {
+    public boolean excluirSala(Long id) {
         salaRepository.deleteById(id);
     }
 }

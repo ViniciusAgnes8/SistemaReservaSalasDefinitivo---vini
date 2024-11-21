@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Equipamentos</title>
-    <link rel="stylesheet" th:href="@{/css/style.css}" href="/src/main/resources/static/css/style.css">
+    <link rel="stylesheet" th:href="@{/css/equipstyle.css}" href="/SistemaReservaSalasDefinitivo---vini-master/src/main/resources/static/css/equipstyle.css">
+    <link rel="stylesheet" th:href="@{/css/style.css}" href="/SistemaReservaSalasDefinitivo---vini-master/src/main/resources/static/css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
@@ -58,7 +59,9 @@
                         <td th:text="${equipamento.nome}"></td>
                         <td th:text="${equipamento.status}"></td>
                         <td>
-                            <button class="btn-reserve" onclick="openReserveModal('${equipamento.nome}')">
+                            <button 
+                                class="btn-reserve" 
+                                onclick="openReserveModal([[${equipamentoid}]], '[[${equipamento.nome}]]')">
                                 <i class="fas fa-calendar-alt"></i> Reservar
                             </button>
                         </td>
@@ -68,33 +71,39 @@
         </div>
     </section>
 
-   <!-- Modal de Reserva -->
-<div id="reserve-modal" class="modal">
-    <div class="modal-content">
-        <span class="close-btn" onclick="closeReserveModal()">&times;</span>
-        <h2>Reservar Equipamento</h2>
-        <form id="reserve-form" onsubmit="handleReservation(event)">
-            <input type="hidden" id="equipamento-id" name="equipamento-id">
-            <label for="nome">Nome:</label>
-            <input type="text" id="nome" name="nome" required>
-            <label for="email">E-mail:</label>
-            <input type="email" id="email" name="email" required>
-            <label for="data">Data:</label>
-            <input type="date" id="data" name="data" required>
-            <label for="entrada">Horário de Entrada:</label>
-            <input type="time" id="entrada" name="entrada" required>
-            <label for="saida">Horário de Saída:</label>
-            <input type="time" id="saida" name="saida" required>
-            <button type="submit">Confirmar Reserva</button>
-        </form>
-    </div>
-</div>
-
     <footer>
         <p>&copy; 2024 Biopark Educação | Todos os direitos reservados</p>
     </footer>
 
-    <script src="/src/main/resources/static/js/popup/reserequip.js" th:src="@{/js/popup/reserequip.js}"></script>
-    <script src="/src/main/resources/static/js/popup/script.js" th:src="@{/js/popup/script.js}"></script>
+    <div id="reserve-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeReserveModal()">&times;</span>
+            <h2>Reservar Equipamento</h2>
+            <p>Equipamento: <span id="nome-equipamento"></span></p>
+            <form th:action="@{/reservar-direto/equipamento/{id}(id=${equipamentoId})}" method="post" th:object="${reservaDTO}" id="reserve-form" onsubmit="handleReservation(event)">
+                <input type="hidden" id="equipamento-id" name="equipamento-id" th:value="${equipamentoId}">
+                <label for="nome">Nome:</label>
+                <input type="text" id="nome" name="nome" th:field="*{nome}" required>
+
+                <label for="email">E-mail:</label>
+                <input type="email" id="email" name="email" th:field="*{email}" required>
+
+                <label for="data">Data:</label>
+                <input type="date" id="data" name="data" th:field="*{data}" required>
+
+                <label for="entrada">Horário de Entrada:</label>
+                <input type="time" id="entrada" name="entrada" th:field="*{entrada}" required>
+
+                <label for="saida">Horário de Saída:</label>
+                <input type="time" id="saida" name="saida" th:field="*{saida}" required>
+
+                <button type="submit">Confirmar Reserva</button>
+            </form>
+        </div>
+    </div>
+
+    <script th:src="@{/js/popup/reserva-equipamentos.js}"></script>
+    <script th:src="@{/js/script.js}"></script>
+
 </body>
 </html>

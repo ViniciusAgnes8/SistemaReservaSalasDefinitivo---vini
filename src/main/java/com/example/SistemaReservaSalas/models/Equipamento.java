@@ -14,21 +14,16 @@ public class Equipamento {
     @Enumerated(EnumType.STRING)
     private StatusEquipamento status;
 
-    // Construtor padrão
     public Equipamento() { }
 
-    // Construtor com parâmetros
      public Equipamento(Long id, String nome, StatusEquipamento status) {
         this.id = id;
         this.nome = nome;
         this.status = status;
     }
    
-    // Getters e setters
     public Long getId() { return id; }
    
-   
-
     public void setId(Long id) { this.id = id; }
 
     public String getNome() { return nome; }
@@ -37,7 +32,6 @@ public class Equipamento {
     public StatusEquipamento getStatus() { return status; }
     public void setStatus(StatusEquipamento status) { this.status = status; }
 
-    // Enum para status de equipamentos
     public enum StatusEquipamento {
         DISPONIVEL,
         EM_MANUTENCAO,

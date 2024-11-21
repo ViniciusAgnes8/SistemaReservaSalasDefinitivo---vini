@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 @RequestMapping("/equipamentos")
@@ -21,36 +20,32 @@ public class EquipamentoController {
         this.equipamentoService = equipamentoService;
     }
 
-    // Renderiza a página de equipamentos com a lista completa
+    // Método que lida com a URL /equipamentos
     @GetMapping
-    public ModelAndView equipamentos() {
-        ModelAndView modelAndView = new ModelAndView("listaEquipamentos");
-        modelAndView.addObject("equipamentos", listarEquipamentos());
-        return modelAndView;
+    public ModelAndView equipamentos(Model model) {
+        List<Equipamento> equipamentos = equipamentoService.listarEquipamentos();
+        model.addAttribute("equipamentos", equipamentos); // Passa os equipamentos para o modelo
+        return new ModelAndView("listaEquipamentos"); // Retorna o template Thymeleaf
     }
 
-    // Retorna a lista de equipamentos em formato JSON (API REST)
     @GetMapping("/json")
     @ResponseBody
     public List<Equipamento> listarEquipamentos() {
         return equipamentoService.listarEquipamentos();
     }
 
-    // Busca um equipamento por ID em formato JSON (API REST)
     @GetMapping("/{id}")
     @ResponseBody
-    public Optional<Equipamento> buscarEquipamentoPorId(@PathVariable Long id) {
-        return equipamentoService.buscarEquipamentoPorId(id);
+    public Equipamento buscarEquipamentoPorId(@PathVariable Long id) {
+        return equipamentoService.buscarEquipamentoPorId(id).orElse(null);
     }
 
-    // Adiciona um novo equipamento e redireciona para a página de equipamentos
     @PostMapping("/adicionar")
     public String adicionarEquipamento(@ModelAttribute Equipamento equipamento) {
         equipamentoService.salvar(equipamento);
         return "redirect:/equipamentos";
     }
 
-    // Exclui um equipamento por ID
     @DeleteMapping("/{id}")
     @ResponseBody
     public String excluirEquipamento(@PathVariable Long id) {
