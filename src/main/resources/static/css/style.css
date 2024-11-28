@@ -719,6 +719,8 @@
         box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1); /* Sombra elegante */
         text-align: center;
         justify-content: center;
+        cursor: pointer;
+        display: center;
     }
 
     /* Lista de botões */

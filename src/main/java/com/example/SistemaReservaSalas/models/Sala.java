@@ -9,7 +9,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 
-
 @Entity
 public class Sala {
 
@@ -25,10 +24,8 @@ public class Sala {
     @Enumerated(EnumType.STRING)
     private StatusSala status;
 
-    // Construtor padrão
     public Sala() {}
 
-    // Construtor com parâmetros
     public Sala(Long id, String nome, int capacidade, StatusSala status) {
         this.id = id;
         this.nome = nome;
@@ -36,7 +33,6 @@ public class Sala {
         this.status = status;
     }
 
-    // Getters e setters
     public Long getId() {
         return id;
     }

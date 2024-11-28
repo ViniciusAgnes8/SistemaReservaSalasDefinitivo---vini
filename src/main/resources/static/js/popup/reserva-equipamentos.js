@@ -14,8 +14,6 @@ function closeReserveModal() {
 
 function handleReservation(event) {
     event.preventDefault(); // Evita o envio padrão do formulário
-    
-    // Realiza o processo de reserva via AJAX ou pode submeter normalmente ao controlador
-    // Aqui você pode adicionar lógica AJAX para evitar o recarregamento da página
+
     alert('Reserva confirmada');
 }
