@@ -20,7 +20,7 @@ import java.util.Map;
 public class ReservaDiretaController {
 
     private final EquipamentoService equipamentoService;
-    private final ReservaService reservaS   ervice;
+    private final ReservaService reservaS   2ervice;
 
     public ReservaDiretaController(EquipamentoService equipamentoService, ReservaService reservaService) {
         this.equipamentoService = equipamentoService;
