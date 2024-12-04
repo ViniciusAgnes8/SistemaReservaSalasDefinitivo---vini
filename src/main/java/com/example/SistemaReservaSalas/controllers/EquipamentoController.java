@@ -2,15 +2,12 @@ package com.example.SistemaReservaSalas.controllers;
 
 import com.example.SistemaReservaSalas.models.Equipamento;
 import com.example.SistemaReservaSalas.services.EquipamentoService;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
-
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping("/equipamentos")
 public class EquipamentoController {
 
@@ -21,22 +18,16 @@ public class EquipamentoController {
     }
 
     @GetMapping
-    public ModelAndView equipamentos(Model model) {
+    public String listarEquipamentos(Model model) {
         List<Equipamento> equipamentos = equipamentoService.listarEquipamentos();
         model.addAttribute("equipamentos", equipamentos);
-        return new ModelAndView("listaEquipamentos"); 
+        return "listaequipamentos";
     }
 
     @GetMapping("/json")
     @ResponseBody
-    public List<Equipamento> listarEquipamentos() {
+    public List<Equipamento> listarEquipamentosJson() {
         return equipamentoService.listarEquipamentos();
-    }
-
-    @GetMapping("/{id}")
-    @ResponseBody
-    public Equipamento buscarEquipamentoPorId(@PathVariable Long id) {
-        return equipamentoService.buscarEquipamentoPorId(id).orElse(null);
     }
 
     @PostMapping("/adicionar")
@@ -52,4 +43,3 @@ public class EquipamentoController {
         return "Equipamento excluído com sucesso";
     }
 }
-

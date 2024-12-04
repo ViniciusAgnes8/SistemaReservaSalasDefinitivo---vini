@@ -164,7 +164,6 @@
     background-color: #d50032;
 }
 
-
 /* --- Novos estilos para a reserva --- */
 
 /* Estilo do Modal de Reserva */
@@ -175,10 +174,20 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.5); /* Fundo escuro */
     z-index: 1000;
     align-items: center;
     justify-content: center;
+    visibility: hidden; /* Garante que o modal não será visível até ser acionado */
+    opacity: 0; /* Inicialmente invisível */
+    transition: opacity 0.3s ease, visibility 0s 0.3s; /* Transição suave */
+}
+
+/* Quando o modal estiver visível */
+#reserve-modal.show {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 0.3s ease, visibility 0s; /* Garante que a transição de visibilidade seja suave */
 }
 
 .modal-content {
