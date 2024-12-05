@@ -1,32 +1,47 @@
 package com.example.SistemaReservaSalas.controllers;
 
-import com.example.SistemaReservaSalas.models.Sala;
-import com.example.SistemaReservaSalas.services.SalaService;
+import java.util.List;
+import java.util.Optional;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.List;
-import java.util.Optional;
+import com.example.SistemaReservaSalas.models.ReservaSala;
+import com.example.SistemaReservaSalas.models.Sala;
+import com.example.SistemaReservaSalas.services.SalaService;
 
 @RestController
 @RequestMapping("/salas")
 public class SalaController {
 
     private final SalaService salaService;
+  
 
     public SalaController(SalaService salaService) {
         this.salaService = salaService;
+
     }
 
     // Exibição da lista de salas em uma página HTML
     @GetMapping
     public ModelAndView salas(Model model) {
+        Sala sala = new Sala(); // instancia objeto sala
+        ReservaSala reservaSala = new ReservaSala(); // instancia objeto reserva sala
+        reservaSala.setSala(sala); // adiciona objeto sala ao reserva sala
+
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("listaSalas");
         modelAndView.addObject("salas", listarSalas());
+        modelAndView.addObject("reservaSala", new ReservaSala()); //envia o objeto reserva sala para o front
         return modelAndView;
     }
 
@@ -62,5 +77,19 @@ public class SalaController {
         } else {
             return ResponseEntity.status(404).body("Sala não encontrada");
         }
+    }
+
+
+     // metodo para salvar reserva de sala
+    @PostMapping("/salvar-reserva")
+    public ModelAndView salvarReserva(@ModelAttribute ReservaSala reserva, Model model) {
+    
+        // Salvar a reserva
+        salaService.salvarReserva(reserva);
+        // Criando o ModelAndView para redirecionar para a página de lista de salas
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("redirect:/reservas");  // Isso irá redirecionar para o endpoint "/salas"
+    
+        return modelAndView;
     }
 }

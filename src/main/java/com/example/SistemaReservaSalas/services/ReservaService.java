@@ -1,43 +1,38 @@
 package com.example.SistemaReservaSalas.services;
 
-import com.example.SistemaReservaSalas.models.Reserva;
-import com.example.SistemaReservaSalas.models.ReservaDTO;
-import com.example.SistemaReservaSalas.repositories.ReservaRepository;
-import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
+
+import org.springframework.stereotype.Service;
+
+import com.example.SistemaReservaSalas.models.ReservaSala;
+import com.example.SistemaReservaSalas.repositories.ReservaSalaRepository;
 
 @Service
 public class ReservaService {
 
-    private final ReservaRepository reservaRepository;
+    private final ReservaSalaRepository reservaSalaRepository;
 
-    public ReservaService(ReservaRepository reservaRepository) {
-        this.reservaRepository = reservaRepository;
+    public ReservaService(ReservaSalaRepository reservaSalaRepository) {
+        this.reservaSalaRepository = reservaSalaRepository;
     }
 
     // Listar todas as reservas
-    public List<Reserva> listarReservas() {
-        return reservaRepository.findAll();
+    public List<ReservaSala> listarReservas() {
+        return reservaSalaRepository.findAll();
     }
 
     // Buscar uma reserva específica pelo ID
-    public Optional<Reserva> buscarReservaPorId(Long id) {
-        return reservaRepository.findById(id);
+    public Optional<ReservaSala> buscarReservaPorId(Long id) {
+        return reservaSalaRepository.findById(id);
     }
 
-    // Salvar uma nova reserva
-    public Reserva salvarReserva(Reserva reserva) {
-        return reservaRepository.save(reserva);
-    }
 
     // Excluir uma reserva pelo ID
     public void excluirReserva(Long id) {   
-        reservaRepository.deleteById(id);
+        reservaSalaRepository.deleteById(id);
     }
 
-    public String reservarEquipamento(Long idEquipamento, ReservaDTO reservaDTO) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'reservarEquipamento'");
-    }
+    
+    
 }

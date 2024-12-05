@@ -28,12 +28,12 @@ function filterRooms() {
     });
 }
 
-function openReserveModal(id, name) {
-    // Preenche o modal com a informação correta
-    if (id) {
-        document.getElementById('sala-id').value = id;
-    }
+
+
+function openReserveModal(button) {
+    const salaId = button.getAttribute('data-sala-id')
     document.getElementById('reserve-modal').style.display = 'block'; // Exibe o modal
+    document.getElementById('sala-id').value = salaId;
 }
 
 function closeReserveModal() {

@@ -62,10 +62,10 @@
                     <tbody>
                         <tr th:each="reserva : ${reservas}">
                             <td th:text="${reserva.id}"></td>
-                            <td th:text="${reserva.nomeSala}"></td>
-                            <td th:text="${#dates.format(reserva.dataReserva, 'yyyy-MM-dd')}"></td>
-                            <td th:text="${reserva.horario}"></td>
-                            <td th:text="${reserva.usuario}"></td>
+                            <td th:text="${reserva.sala.nome}"></td>
+                            <td th:text="${reserva.data}"></td>
+                            <td th:text="${reserva.horarioEntrada}"></td>
+                          
                             <td>
                                 <button class="btn-edit" th:onclick="'editarReserva(' + ${reserva.id} + ')'">
                                     <i class="fas fa-edit"></i> Editar

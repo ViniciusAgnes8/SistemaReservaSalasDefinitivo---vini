@@ -16,9 +16,5 @@ public class ReservaDiretaController {
         this.reservaService = reservaService;
     }
 
-    @PostMapping("/salvar")
-    public ResponseEntity<Reserva> salvarReserva(@RequestBody Reserva reserva) {
-        Reserva novaReserva = reservaService.salvarReserva(reserva);
-        return ResponseEntity.status(201).body(novaReserva);
-    }
+   
 }
