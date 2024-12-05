@@ -41,9 +41,10 @@
             <section id="generalReport" class="report-section">
                 <h2>Relatório Geral</h2>
                 <div class="filters">
-                    <label for="generalDate">Selecione a Data:</label>
-                    <input type="date" id="generalDate">
-                    <button id="generalFilterButton">Gerar Relatório</button>
+                    <input type="text" class="filter-input" id="filter-id" placeholder="Filtrar por ID">
+                    <input type="text" class="filter-input" id="filter-nome-sala" placeholder="Filtrar por Nome">
+                    <input type="date" class="filter-input" id="filter-data-reserva" placeholder="Filtrar por Data da Reserva">
+                    <button class="search-button" onclick="filterTable()">Buscar</button>
                 </div>
                 <div div class="container">
                     <h3>Salas</h3>
@@ -87,9 +88,10 @@
             <section id="roomReport" class="report-section hidden">
                 <h2>Relatório por Sala</h2>
                 <div class="filters">
-                    <label for="roomName">Sala:</label>
-                    <input type="text" id="roomName" placeholder="Digite o nome ou ID da sala">
-                    <button id="roomFilterButton">Buscar</button>
+                    <input type="text" class="filter-input" id="filter-id" placeholder="Filtrar por ID">
+                    <input type="text" class="filter-input" id="filter-nome-sala" placeholder="Filtrar por Nome da Sala">
+                    <input type="date" class="filter-input" id="filter-data-reserva" placeholder="Filtrar por Data da Reserva">
+                    <button class="search-button" onclick="filterTable()">Buscar</button>
                 </div>
                 <div class="container">
                     <table>
@@ -127,9 +129,10 @@
             <section id="equipmentReport" class="report-section hidden">
                 <h2>Relatório por Equipamento</h2>
                 <div class="filters">
-                    <label for="equipmentName">Equipamento:</label>
-                    <input type="text" id="equipmentName" placeholder="Digite o nome ou ID do equipamento">
-                    <button id="equipmentFilterButton">Buscar</button>
+                    <input type="text" class="filter-input" id="filter-id" placeholder="Filtrar por ID">
+                    <input type="text" class="filter-input" id="filter-nome-sala" placeholder="Filtrar por Nome do Equipamento">
+                    <input type="date" class="filter-input" id="filter-data-reserva" placeholder="Filtrar por Data da Reserva">
+                    <button class="search-button" onclick="filterTable()">Buscar</button>
                 </div>
                 <div class="container">
                     <table>
