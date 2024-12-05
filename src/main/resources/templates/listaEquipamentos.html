@@ -59,9 +59,12 @@
                         <td th:text="${equipamento.nome}"></td>
                         <td th:text="${equipamento.status}"></td>
                         <td>
-                            <button class="btn-reserve" >
-                                <i class="fas fa-calendar-alt"></i> Reservar
-                            </button>
+                            <button class="btn-reserve" 
+                            th:data-sala-id="${equipamento.id}" 
+                            onclick="openReserveModal(this)" 
+                            th:if="${equipamento.status != T(com.example.SistemaReservaSalas.models.equipamento.Statusequipamento).OCUPADA and equipamento.status != T(com.example.SistemaReservaSalas.models.equipamento.Statusequipamento).EM_MANUTENCAO}">
+                        <i class="fas fa-calendar-alt"></i> Reservar
+                    </button>                   
                         </td>
                     </tr>
                 </tbody>

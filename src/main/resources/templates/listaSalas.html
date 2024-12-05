@@ -72,14 +72,12 @@
                         <td th:text="${sala.capacidade}"></td>
                         <td th:text="${sala.status}"></td>
                         <td>
-                            <td>
-                                <button class="btn-reserve" 
-                                        th:data-sala-id="${sala.id}" 
-                                        onclick="openReserveModal(this)" 
-                                        th:if="${sala.status != T(com.example.SistemaReservaSalas.models.Sala.StatusSala).OCUPADA and sala.status != T(com.example.SistemaReservaSalas.models.Sala.StatusSala).EM_MANUTENCAO}">
-                                    <i class="fas fa-calendar-alt"></i> Reservar
-                                </button>
-                            </td>                            
+                            <button class="btn-reserve" 
+                            th:data-sala-id="${sala.id}" 
+                            onclick="openReserveModal(this)" 
+                            th:if="${sala.status != T(com.example.SistemaReservaSalas.models.Sala.StatusSala).OCUPADA and sala.status != T(com.example.SistemaReservaSalas.models.Sala.StatusSala).EM_MANUTENCAO}">
+                        <i class="fas fa-calendar-alt"></i> Reservar
+                    </button>                        
                         </td>
                     </tr>
                 </tbody>

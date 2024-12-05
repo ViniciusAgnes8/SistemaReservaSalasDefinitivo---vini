@@ -65,6 +65,7 @@
                             <td th:text="${reserva.sala.nome}"></td>
                             <td th:text="${reserva.data}"></td>
                             <td th:text="${reserva.horarioEntrada}"></td>
+                            <td th:text="${reserva.nome}"></td>
                           
                             <td>
                                 <button class="btn-edit" th:onclick="'editarReserva(' + ${reserva.id} + ')'">

@@ -54,6 +54,7 @@
                                 <th>Nome</th>
                                 <th>Último Responsável</th>
                                 <th>Última Data Registrada</th>
+                                <th>Período</th>
                             </tr>
                         </thead>
                         <tbody id="generalRoomBody">
@@ -70,6 +71,7 @@
                                 <th>Nome</th>
                                 <th>Último Responsável</th>
                                 <th>Última Data Registrada</th>
+                                <th>Período</th>
                                 <th>Última Manutenção</th>
                                 <th>Proxíma Manutenção</th>
                             </tr>
@@ -95,21 +97,25 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Nome</th>
-                                <th>Capacidade</th>
-                                <th>Status</th>
-                                <th>Ações</th>
+                                <th>Último Responsável</th>
+                                <th>Última Data Registrada</th>
+                                <th>Período</th>
                             </tr>
                         </thead>
                         <tbody id="room-list">
-                            <tr th:each="sala : ${salas}" id="sala-{sala.id}">
+                            <!-- <tr th:each="sala : ${salas}" id="sala-{sala.id}">
                                 <td th:text="${sala.id}"></td>
                                 <td th:text="${sala.nome}"></td>
-                                <td th:text="${sala.capacidade}"></td>
-                                <td th:text="${sala.status}"></td>
-                                <td>
-                                    <button class="btn-reserve" onclick="openReserveModal('${sala.id}', '${sala.nome}')">
-                                        <i class="fas fa-calendar-alt"></i> Reservar
-                                    </button>
+                                <td th:text="${sala.data}"></td>
+                                <td th:text="${sala.horarioEntrada}"></td>
+                                <td> -->
+
+                                    <tr th:each="reserva : ${reservas}">
+                                        <td th:text="${reserva.id}"></td>
+                                        <td th:text="${reserva.sala.nome}"></td>
+                                        <td th:text="${reserva.data}"></td>
+                                        <td th:text="${reserva.horarioEntrada}"></td>
+                                        <td th:text="${reserva.nome}"></td>
                                 </td>
                             </tr>
                         </tbody>
@@ -132,7 +138,7 @@
                                 <th>ID</th>
                                 <th>Nome</th>
                                 <th>Última Data Registrada</th>
-                                <th>Histórico de Uso</th>
+                                <th>Período</th>
                                 <th>Último Responsável</th>
                                 <th>Data da Última Manutenção</th>
                                 <th>Data para Próxima Revisão</th>
