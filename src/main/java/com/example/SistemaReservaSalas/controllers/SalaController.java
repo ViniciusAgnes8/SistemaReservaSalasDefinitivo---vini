@@ -1,7 +1,6 @@
 package com.example.SistemaReservaSalas.controllers;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
@@ -54,11 +53,10 @@ public class SalaController {
     // Buscar uma sala específica pelo ID
     @GetMapping("/{id}")
     public ResponseEntity<Sala> buscarSalaPorId(@PathVariable Long id) {
-        Optional<Sala> sala = salaService.buscarSalaPorId(id);
+        Sala sala = salaService.buscarSalaPorId(id);
         
-        return sala.map(ResponseEntity::ok)
-                   .orElseGet(() -> ResponseEntity.status(404).build()); // Retorna 404 se não encontrado
-    }
+        return ResponseEntity.ok(sala);
+     }
 
     // Salvar uma nova sala
     @PostMapping("/salvar")
@@ -83,8 +81,13 @@ public class SalaController {
      // metodo para salvar reserva de sala
     @PostMapping("/salvar-reserva")
     public ModelAndView salvarReserva(@ModelAttribute ReservaSala reserva, Model model) {
-    
-        // Salvar a reserva
+        
+        if(reserva.getSala().getId() != null){
+            Sala updateSala = salaService.buscarSalaPorId(reserva.getSala().getId());
+            updateSala.setStatus(Sala.StatusSala.OCUPADA);
+            salaService.salvarSala(updateSala);
+        }
+       // Salvar a reserva
         salaService.salvarReserva(reserva);
         // Criando o ModelAndView para redirecionar para a página de lista de salas
         ModelAndView modelAndView = new ModelAndView();

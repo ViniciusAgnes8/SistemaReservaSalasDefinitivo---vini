@@ -30,8 +30,9 @@ public class SalaService {
     }
 
     // Buscar uma sala específica pelo ID
-    public Optional<Sala> buscarSalaPorId(Long id) {
-        return salaRepository.findById(id);
+    public Sala buscarSalaPorId(Long id) {
+        Optional <Sala> sala = salaRepository.findById(id);
+        return sala.orElse(null);
     }
 
     // Salvar ou atualizar uma sala
@@ -42,7 +43,6 @@ public class SalaService {
     // Excluir uma sala pelo ID
     public boolean excluirSala(Long id) {
         salaRepository.deleteById(id);
-                return false;
     }
 
     // reserva sala
