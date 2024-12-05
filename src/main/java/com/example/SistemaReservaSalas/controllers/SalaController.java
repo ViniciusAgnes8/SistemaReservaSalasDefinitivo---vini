@@ -71,7 +71,7 @@ public class SalaController {
         boolean excluida = salaService.excluirSala(id);
         
         if (excluida) {
-            return ResponseEntity.status(204).build();  // Retorna 204 No Content
+            return ResponseEntity.status(204).build();
         } else {
             return ResponseEntity.status(404).body("Sala não encontrada");
         }
@@ -89,7 +89,6 @@ public class SalaController {
         }
        // Salvar a reserva
         salaService.salvarReserva(reserva);
-        // Criando o ModelAndView para redirecionar para a página de lista de salas
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("redirect:/reservas");  // Isso irá redirecionar para o endpoint "/salas"
     
